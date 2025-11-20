@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at ALU3bit.v(5): object "HEX0" differs only in case from object "Hex0" in the same scope File: U:/ECE451/Quartus/Lab2/ALU3bit.v Line: 5
+Info (10281): Verilog HDL Declaration information at ALU3bit.v(6): object "HEX1" differs only in case from object "Hex1" in the same scope File: U:/ECE451/Quartus/Lab2/ALU3bit.v Line: 6

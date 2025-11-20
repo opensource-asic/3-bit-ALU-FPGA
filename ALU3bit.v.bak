@@ -1,0 +1,82 @@
+
+module top (
+    input  wire [9:0] SW,
+    output wire [9:0] LEDR,
+    output wire [6:0] HEX0, HEX1
+);
+
+    // -------- Inputs from switches --------
+    wire [2:0] A   = SW[2:0];
+    wire [2:0] B   = SW[5:3];
+    wire [1:0] Sel = SW[7:6];
+
+    // -------- Outputs (simple regs for easy Lab-VWF viewing) --------
+    reg  [2:0] Output;          // wrapped 3-bit result
+    reg  [6:0] Hex0;            // magnitude digit (active-low)
+    reg  [6:0] Hex1;            // sign (dash or blank), active-low
+
+    assign LEDR[2:0] = Output;
+    assign LEDR[9:3] = 7'b0;    // unused LEDs off
+    assign HEX0 = Hex0;
+    assign HEX1 = Hex1;
+
+    // -------- Internal: sign-extended operands and 4-bit signed result --------
+    wire signed [3:0] As = {A[2], A};     // sign-extend to 4 bits
+    wire signed [3:0] Bs = {B[2], B};
+    reg  signed [3:0] S;                  // signed result for display
+
+    // -------- ALU (pure case, no ifs, safe defaults) --------
+    always @* begin
+        // Safe defaults (prevents latches)
+        Output = 3'b000;
+        S      = 4'sd0;
+
+        case (Sel)
+            2'b00: begin // ADD
+                S      = As + Bs;
+                Output = S[2:0];
+            end
+            2'b01: begin // SUB
+                S      = As - Bs;
+                Output = S[2:0];
+            end
+            2'b10: begin // XOR (bitwise, unsigned magnitude)
+                S      = {1'b0, (A ^ B)};
+                Output = (A ^ B);
+            end
+            2'b11: begin // SHIFT-LEFT on A (zero-fill)
+                S      = {1'b0, (A << 1)};
+                Output = (A << 1);
+            end
+            default: begin
+                S      = 4'sd0;
+                Output = 3'b000;
+            end
+        endcase
+    end
+
+    // -------- 7-seg display: HEX1="-" if negative, HEX0=|S| clipped 0..7 --------
+    wire neg = S[3];
+    wire [3:0] absS = neg ? (~S + 4'd1) : S;         // |S|
+    wire [3:0] mag  = (absS > 4'd7) ? 4'd7 : absS;   // clip to 0..7 for one digit
+
+    always @* begin
+        // HEX0 = digit 0..7 (active-low)
+        case (mag)
+            4'd0: Hex0 = 7'b1000000; // 0
+            4'd1: Hex0 = 7'b1111001; // 1
+            4'd2: Hex0 = 7'b0100100; // 2
+            4'd3: Hex0 = 7'b0110000; // 3
+            4'd4: Hex0 = 7'b0011001; // 4
+            4'd5: Hex0 = 7'b0010010; // 5
+            4'd6: Hex0 = 7'b0000010; // 6
+            4'd7: Hex0 = 7'b1111000; // 7
+            default: Hex0 = 7'b1111111; // blank
+        endcase
+
+        // HEX1 = minus for negative, else blank (active-low)
+        Hex1 = neg ? 7'b0111111  // "-"
+                    : 7'b1111111; // blank
+    end
+
+endmodule

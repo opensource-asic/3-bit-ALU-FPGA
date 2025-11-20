@@ -1,0 +1,54 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dU:/ECE451/Quartus/Lab2/simulation/qsim
+vALU3bit
+!s110 1759887185
+!i10b 1
+!s100 KlGb>mYQIeA?J=?l?KZ6e3
+IbEhdEe4gkL`94L3hFm^3L2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1759887183
+8ALU3bit.vo
+FALU3bit.vo
+L0 31
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1759887185.000000
+!s107 ALU3bit.vo|
+!s90 -work|work|ALU3bit.vo|
+!i113 1
+Z3 o-work work
+Z4 tCvgOpt 0
+n@a@l@u3bit
+vALU3bit_vlg_vec_tst
+!s110 1759887186
+!i10b 1
+!s100 33JC0KPdgg[gJalzG_M>M0
+IPL[U_zY3IKUmhk>lVH@^_3
+R1
+R0
+w1759887180
+8Waveform1.vwf.vt
+FWaveform1.vwf.vt
+L0 29
+R2
+r1
+!s85 0
+31
+!s108 1759887186.000000
+!s107 Waveform1.vwf.vt|
+!s90 -work|work|Waveform1.vwf.vt|
+!i113 1
+R3
+R4
+n@a@l@u3bit_vlg_vec_tst
