@@ -58,18 +58,25 @@ Use the Pin Planner to assign physical pins according to your board documentatio
 - Open Processing > Start Compilation
 - Wait for synthesis, fitter, assembler
 - Ensure no errors and minimal warnings
+<img width="975" height="404" alt="image" src="https://github.com/user-attachments/assets/a0da36a2-dd12-4d49-b6a1-764575268697" />
+<img width="975" height="600" alt="image" src="https://github.com/user-attachments/assets/35c29cd6-22e6-4210-8471-1d5efd3b582b" />
+
 
 ### 4. Simulate (Optional)
 - Open University Waveform Editor
 - Add input/output signals
 - Define vector test cases
 - Run simulation to verify logic
+<img width="975" height="584" alt="image" src="https://github.com/user-attachments/assets/e8c59c51-6e77-4b51-89ef-87f37dfb4b9c" />
+
 
 ### 5. Program the FPGA
 - Connect USB-Blaster cable
 - Open Programmer tool
 - Select correct .sof file and device
 - Click "Start" to program the board
+<img width="975" height="564" alt="image" src="https://github.com/user-attachments/assets/36aae4d4-780c-4bdd-88c1-25e48b10e917" />
+
 
 ## Example Output
 
